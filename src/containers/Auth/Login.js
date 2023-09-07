@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 
-
-import { handleLogin } from "../../services/userService";
-
-
+import { handleLoginApi } from "../../services/userService";
 
 import * as actions from "../../store/actions";
 
@@ -19,6 +16,7 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
+      errMessage: "",
       isShowPassword: false,
     };
   }
@@ -38,15 +36,40 @@ class Login extends Component {
   };
 
   handleLogin = async () => {
-    console.log(
-      "username: ",
-      this.state.username,
-      "password: ",
-      this.state.password
-    );
-    console.log("all state", this.state);
+    this.setState({
+      errMessage: "",
+    });
+    // console.log(
+    //   "username: ",
+    //   this.state.username,
+    //   "password: ",
+    //   this.state.password
+    // );
+    // console.log("all state", this.state);
 
-    await handleLogin(this.state.username, this.state.password);
+    try {
+      let data = await handleLoginApi(this.state.username, this.state.password);
+      if(data && data.errCode !== 0){
+        this.setState({
+          errMessage: data.message,
+        });
+      }
+
+      if(data && data.errCode ===0 ){
+        this.props.userLoginSuccess(data.user)
+        console.log("Login successful")
+      }
+
+    } catch (error) {
+      if (error.response) {
+        if (error.response.data) {
+          this.setState({
+            errMessage: error.response.data.message,
+          });
+        }
+      }
+      console.log("adamhung", error.response);
+    }
   };
 
   handleShowHidePassword = () => {
@@ -98,6 +121,10 @@ class Login extends Component {
               </div>
             </div>
 
+            <div className="col-12" style={{ color: "red" }}>
+              {this.state.errMessage}
+            </div>
+
             <div className="col-12">
               <button
                 className="btn-login"
@@ -135,9 +162,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    adminLoginSuccess: (adminInfo) =>
-      dispatch(actions.adminLoginSuccess(adminInfo)),
-    adminLoginFail: () => dispatch(actions.adminLoginFail()),
+    
+    //userLoginFail: () => dispatch(actions.userLoginFail()),
+
+    userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
   };
 };
 
