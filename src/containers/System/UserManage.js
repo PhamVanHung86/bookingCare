@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./UserManage.scss";
 import { connect } from "react-redux";
-import { getAllUsers, createNewUserService } from "../../services/userService";
+import { getAllUsers, createNewUserService, deleteUserService } from "../../services/userService";
 import ModalUser from "./ModalUser";
-
+import {emitter} from "../../utils/emitter";
 
 class UserManage extends Component {
   // Render --> Check hàm này đầu tiên
@@ -15,9 +15,8 @@ class UserManage extends Component {
     };
   }
 
-
   async componentDidMount() {
-    await this.getAllUsersFromReact(); 
+    await this.getAllUsersFromReact();
   }
 
   getAllUsersFromReact = async () => {
@@ -27,40 +26,53 @@ class UserManage extends Component {
         arrUsers: response.users,
       });
     }
-  }
+  };
 
   handleAddNewUser = () => {
     this.setState({
       isOpenModalUser: true,
-    })
-  }
+    });
+  };
 
   toggleUserModal = () => {
     this.setState({
       isOpenModalUser: !this.state.isOpenModalUser,
-    })
-  }
-
+    });
+  };
 
   createNewUser = async (data) => {
     try {
       let response = await createNewUserService(data);
-      if(response && response.errCode !== 0)
-      {
-        alert(response.errMessage)
-      }
-      else {
+      if (response && response.errCode !== 0) {
+        alert(response.errMessage);
+      } else {
         await this.getAllUsersFromReact();
         this.setState({
-          isOpenModalUser: false
-        })
+          isOpenModalUser: false,
+
+        });
+        emitter.emit('EVENT_CLEAR_MODAL_DATA');
       }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+
+  handleDeleteUser = async (user) =>{
+    try{
+      let response = await deleteUserService(user.id);
+      if(response && response.errCode === 0) {
+        await this.getAllUsersFromReact();
+      } else {
+        alert(response.errMessage)
+      }
+      console.log(response)
     } catch(e) {
       console.log(e);
     }
   }
-
-   /**
+  /**
    * Life cycle:
    * - run component  --> init state
    * - did mount (setState)
@@ -73,15 +85,16 @@ class UserManage extends Component {
     return (
       <div className="user-container">
         <ModalUser
-          isOpen = {this.state.isOpenModalUser}
+          isOpen={this.state.isOpenModalUser}
           toggleFormParent={this.toggleUserModal}
           createNewUser={this.createNewUser}
         />
         <div className="title ">Manage user with AdamHung</div>
         <div className="mx-3">
-          <button 
-          onClick={() => this.handleAddNewUser()}
-          className="btn btn-outline-primary px-3">
+          <button
+            onClick={() => this.handleAddNewUser()}
+            className="btn btn-outline-primary px-3"
+          >
             <i className="fas fa-plus mx-1"></i>
             Add New User
           </button>
@@ -105,10 +118,16 @@ class UserManage extends Component {
                     <td>{item.lastName}</td>
                     <td>{item.address}</td>
                     <td className="action">
-                      <button className="btn-edit">
+                      <button
+                        className="btn-edit"
+                        onClick={() => this.handleEditUser()}
+                      >
                         <i class="far fa-edit"></i>
                       </button>
-                      <button className="btn-delete">
+                      <button
+                        className="btn-delete"
+                        onClick={() => this.handleDeleteUser(item)}
+                      >
                         <i class="fas fa-trash-alt"></i>
                       </button>
                     </td>

@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
+import { emitter } from "../../utils/emitter";
+
 class ModalUser extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +16,20 @@ class ModalUser extends Component {
       lastName: "",
       address: "",
     };
+
+    this.listenToEmitter();
+  }
+
+  listenToEmitter() {
+    emitter.on("EVENT_CLEAR_MODAL_DATA", () => {
+      this.setState({
+        email: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        address: "",
+      })
+    });
   }
 
   componentDidMount() {}
@@ -27,14 +43,12 @@ class ModalUser extends Component {
 
     let copyState = { ...this.state };
     copyState[id] = event.target.value;
-    this.setState(
-      {
-        ...copyState,
-      }
-    );
+    this.setState({
+      ...copyState,
+    });
   };
 
-  checkValideInput = () => {
+  checkValidateInput = () => {
     let isValid = true;
     let arrInput = ["email", "password", "firstName", "lastName", "address"];
     for (let i = 0; i < arrInput.length; i++) {
@@ -48,16 +62,13 @@ class ModalUser extends Component {
   };
 
   handleAddNewUser = () => {
-    let isValid = this.checkValideInput();
-    if(isValid === true) {
+    let isValid = this.checkValidateInput();
+    if (isValid === true) {
       //call api
-      console.log("check props child ", this.props )
+      console.log("check props child ", this.props);
       this.props.createNewUser(this.state);
     }
   };
-
-  
-
 
   render() {
     return (
