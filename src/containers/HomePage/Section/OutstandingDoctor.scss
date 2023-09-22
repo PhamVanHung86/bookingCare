@@ -1,0 +1,24 @@
+.section-out-standing-doctor {
+    height: 380px !important;
+    .section-body {
+        .slider-customize {
+            text-align: center !important;
+            margin: 5px 0px !important;
+            .bg-image {
+                display: block !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                width: 200px !important;
+                height: 200px !important;
+                border-radius: 50% !important;
+                background-size: cover !important;
+            }            
+            .position-text {
+                padding: 10px !important;
+            }
+        }
+    }
+}
+
+
+

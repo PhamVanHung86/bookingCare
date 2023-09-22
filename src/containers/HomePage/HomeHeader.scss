@@ -1,0 +1,183 @@
+.home-header-container { 
+    .home-header-content {
+        width: 100%;
+        height: 80px;
+        display: flex;
+        padding: 0 20px;
+        position: sticky;
+        top: 0;
+        
+
+        .left-content {
+            width: 25%;
+            
+            align-items: center;
+            
+            display: flex;
+            
+            i {
+                font-size: 24px;
+                color: gray;
+                cursor: pointer;
+                padding-right:20px;
+            }
+
+            .header-logo {
+                background: url(../../assets/logo.svg) center center no-repeat;
+                height: 50%;
+                width: 50%;
+                
+
+            }
+        }
+
+        .center-content {
+            width: 50%;
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .child-content {
+                .subs-title {
+            
+                    font-size: 12px;
+                }
+            }
+
+        }
+
+        .right-content {
+            width: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            i {
+                color: grey;
+                font-size: 20px;
+                padding-right: 5px;
+            }
+
+            .support {
+                display: flex;
+                align-items: center;
+                padding-right: 10px;
+            }
+
+            .language-vi {
+                margin: 0 10px;
+                cursor: pointer;
+                opacity: 0.5;
+                &.active {
+                    span {
+                        opacity: 1;
+                        color: orange
+                    }
+                }
+            }
+
+            .language-en {
+                margin: 0 10px;
+                cursor: pointer;
+                &.active {
+                    span {
+                        color: rgb(128, 0, 32)
+                    } 
+                }
+            }
+        }
+    }
+
+    .home-header-banner {
+        background: url(../../assets/header-background.png) center center no-repeat;
+        background-color: linear-gradient(rgba(0, 0,0, 0.25), rgba(255, 255, 255, 0.1));
+        height: 500px;
+        .content-up {
+            
+            height: 50%;
+
+            .title1 {
+                text-align: center;
+                font-size: 35px;
+                text-shadow: 1px 1px 1px #333;
+                padding-top: 35px;
+                color:white;
+            }
+    
+            .title2 {
+                text-align: center;
+                font-size: 30px;
+                text-shadow: 1px 1px 1px #333;
+                margin-top: 15px;
+                color:white;
+                margin-bottom: 35px;
+            }
+    
+            .search {
+                align-items: center;
+                display: flex;
+                margin: 0 auto;
+                justify-content: center;
+                padding: 10px;
+                width: 510px;
+                border-radius: 25px;
+                background-color: white;
+                
+                i {
+                    font-size: 20px;
+                    color: #ffc10e;
+                    padding-right: 15px;
+                }
+
+                input {
+                    width: 425px;
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    height: 30px; 
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .content-down {
+            height: 50%;
+            align-items: flex-end;
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            background-image: linear-gradient(rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 1));
+
+            .options {
+                text-align: center;
+                display: flex;
+                height: 100px;
+
+                .option-child {
+                    width: 200px;
+                }
+                
+                .icon-child {
+                    color: #49bce2;
+                    background: white;
+                    width: 40px;
+                    height: 40px;
+                    padding: 5px;
+                    border-radius: 50%;
+                    margin: 0 auto;
+                    font-size: 20px;
+                }
+
+                .text-child {
+                    color: black;
+                    font-size: 17px;
+                    font-weight: 600;
+
+                    &:hover {
+                        color: #49bce2;
+                    }
+                }
+            }
+
+        }
+    }
+}

@@ -10,7 +10,7 @@ import {
 import ModalUser from "./ModalUser";
 import ModalEditUser from "./ModalEditUser";
 import { emitter } from "../../utils/emitter";
-import { reject } from "lodash";
+//import { reject } from "lodash";
 
 class UserManage extends Component {
   // Render --> Check hàm này đầu tiên

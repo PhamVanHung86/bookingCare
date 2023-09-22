@@ -1,0 +1,153 @@
+.section-share {
+    &.section-specialty {
+        background: white;
+    }
+
+    &.section-medical-facility {
+        background: rgb(219, 219, 219);
+    }
+
+    &.section-out-standing-doctor {
+        background: white;
+    }
+    &.section-handbook {
+        background: rgb(219, 219, 219);
+    }
+    &.section-about{
+        border: 1px solid red;
+        height: 500px !important;
+        // margin: 0 50px !important;
+    }
+
+
+    .section-body {
+        .slider-customize {
+            .bg-image {
+                background-position: center center;
+                background-repeat: no-repeat !important;
+                background-size: cover;
+                background-color: #eee;
+                height: 278px;
+                width:300px;
+
+                &.section-specialty{
+                    background-image: url("../../assets/co-xuong-khop.jpg");
+                }          
+                &.section-medical-facility {
+                    background-image: url("../../assets/benh-vien-cho-ray.jpg");
+                }
+                &.section-out-standing-doctor {
+                    background-image: url("../../assets/bsckii-tran-minh-khuyen.jpg");
+                }
+                &.section-handbook {
+                    background-image: url("../../assets/tieu-duong-0.jpg");
+                }
+            }               
+        }
+    }
+}
+
+.section-share {  
+    background: white;
+    height: 400px;
+
+    .section-container {       
+        margin: 0 50px;
+        display: flex;
+        flex-direction: column;
+    
+        .section-header {
+            margin: 20px 10px ;
+            height: auto;
+            
+            .title-section {
+                font-size: 22px;
+                font-weight: 600;
+                float: left;
+            }
+    
+            .btn-section {
+                float: right;
+                padding: 10px 15px;
+                border: none;
+                outline: none;
+                display: block;
+                background: #ebebeb;
+                color: black;
+                cursor: pointer;
+                text-transform: uppercase;
+    
+                &:hover {
+                    color:#fff;
+                    background: #f7d800;
+                }
+            }        
+        }
+    }
+}
+
+
+.slick-prev {
+    height: 34px !important;
+    width: 32px !important;
+    left: -20px !important;
+    background: #49bce2 !important;
+    z-index: 100;
+    border-radius: 50% !important;
+    
+}
+
+.slick-prev:before {
+    content: '←';
+    font-size: 40px !important;
+}
+
+.slick-next:before {
+    content: '→';
+    font-size: 40px !important;
+}
+
+.slick-next {
+    float: right;
+    right: -5px !important;
+    z-index: 100;
+    background: #49bce2 !important;
+    border-radius: 50% !important;
+    height: 34px !important;
+    width: 32px !important;           
+}
+
+.home-footer {
+    text-align: center;
+    padding-top: 8px;
+    a {
+        text-decoration: unset;
+    }
+}
+.section-about {
+    padding: 0 50px;
+    .section-about-header {
+        padding: 20px 10px;
+        font-size: 22px;
+        font-weight: 600;
+    }
+    .section-about-content {
+        display: flex;
+        gap: 15px;
+        width: 100%;
+
+        .left-content {
+            width: 60%;
+        }
+
+        .right-content {
+            width: 40%;
+        }
+
+        p {
+            text-align: justify;
+            font-style: italic;
+            padding: 15px;
+        }
+    }
+}
