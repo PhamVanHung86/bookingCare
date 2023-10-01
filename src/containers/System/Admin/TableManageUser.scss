@@ -1,0 +1,18 @@
+.user-container {
+    padding-bottom: 50px;
+}
+.btn-manage-user {
+    display: flex;
+    cursor: pointer;
+    .btn-edit {
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+    .btn-delete {
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+    
+}

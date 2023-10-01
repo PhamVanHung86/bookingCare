@@ -1,8 +1,8 @@
+/* eslint-disable import/no-anonymous-default-export */
 import {combineReducers} from 'redux';
 import { connectRouter } from 'connected-react-router';
-
-import appReducer from "./appReducer";
 import adminReducer from "./adminReducer";
+import appReducer from "./appReducer";
 import userReducer from "./userReducer";
 
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
@@ -18,11 +18,18 @@ const persistCommonConfig = {
 const userPersistConfig = {
     ...persistCommonConfig,
     key: 'user',
-    whitelist: ['isLoggedIn', 'userInfo']
+    whitelist: ['isLoggedIn', 'userInfo', 'language']
 };
+
+const appPersistConfig = {
+    ...persistCommonConfig,
+    key: 'app',
+    whitelist: ['language']
+}
 
 export default (history) => combineReducers({
     router: connectRouter(history),
     user: persistReducer(userPersistConfig, userReducer),
-    app: appReducer
+    app: persistReducer(appPersistConfig, appReducer),
+    admin: adminReducer,
 })

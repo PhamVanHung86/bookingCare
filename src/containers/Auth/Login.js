@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
-
 import { handleLoginApi } from "../../services/userService";
-
 import * as actions from "../../store/actions";
-
 import "./Login.scss";
-//import { FormattedMessage } from "react-intl";
 
 class Login extends Component {
   // eslint-disable-next-line no-useless-constructor
@@ -39,27 +35,18 @@ class Login extends Component {
     this.setState({
       errMessage: "",
     });
-    // console.log(
-    //   "username: ",
-    //   this.state.username,
-    //   "password: ",
-    //   this.state.password
-    // );
-    // console.log("all state", this.state);
-
     try {
       let data = await handleLoginApi(this.state.username, this.state.password);
-      if(data && data.errCode !== 0){
+      if (data && data.errCode !== 0) {
         this.setState({
           errMessage: data.message,
         });
       }
 
-      if(data && data.errCode ===0 ){
-        this.props.userLoginSuccess(data.user)
-        console.log("Login successful")
+      if (data && data.errCode === 0) {
+        this.props.userLoginSuccess(data.user);
+        console.log("Login successful");
       }
-
     } catch (error) {
       if (error.response) {
         if (error.response.data) {
@@ -162,10 +149,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    
+
     //userLoginFail: () => dispatch(actions.userLoginFail()),
 
-    userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
+    userLoginSuccess: (userInfo) =>
+      dispatch(actions.userLoginSuccess(userInfo)),
   };
 };
 
