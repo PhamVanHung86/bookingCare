@@ -48,7 +48,7 @@ class TableManageUser extends Component {
 
   render() {
     let arrUsers = this.state.userRedux; 
-    console.log("check load data: ", arrUsers)
+    console.log("check load data: tablemanage ", this.state)
     return (
       <React.Fragment>
       <div className="user-container">
