@@ -42,8 +42,8 @@
         "add": "Thêm mới người dùng",
         "email": "Email",
         "password": "Mật khẩu",
-        "first-name": "Tên",
-        "last-name": "Họ",
+        "first-name": "Họ",
+        "last-name": "Tên",
         "phone-number": "Số điện thoại",
         "address": "Địa chỉ",
         "gender": "Giới tính",
@@ -52,5 +52,9 @@
         "image": "Ảnh đại diện",
         "save": "Lưu user",
         "edit": "Lưu thay đổi"
+    }, 
+    "homepage": {
+        "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
+        "more-info": "Xem thêm"
     }
 }

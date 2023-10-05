@@ -6,7 +6,6 @@ const handleLoginApi = (userEmail, userPassword) => {
 
 const getAllUsers = (inputId) => {
   return axios.get(`api/get-all-users?id=${inputId}`);
-  
 };
 
 const createNewUserService = (data) => {
@@ -20,13 +19,22 @@ const deleteUserService = (userId) => {
 
 const editUserService = (inputData) => {
   return axios.put("/api/edit-user", inputData);
-
-}
+};
 
 const getAllCodeService = (inputType) => {
-  return axios.get(`/api/allcode?type=${inputType}`)
-}
+  return axios.get(`/api/allcode?type=${inputType}`);
+};
 
-export { handleLoginApi, getAllUsers, 
-  createNewUserService, deleteUserService, 
-  editUserService, getAllCodeService };
+const getTopDoctorHomeService = (limit) => {
+  return axios.get(`/api/top-doctor-home?limit=${limit}`);
+};
+
+export {
+  handleLoginApi,
+  getAllUsers,
+  createNewUserService,
+  deleteUserService,
+  editUserService,
+  getAllCodeService,
+  getTopDoctorHomeService,
+};

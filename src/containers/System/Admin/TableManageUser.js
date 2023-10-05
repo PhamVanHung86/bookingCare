@@ -3,7 +3,16 @@ import "./TableManageUser.scss";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions";
 import "./TableManageUser.scss";
+import MarkdownIt from 'markdown-it';
+import MdEditor from 'react-markdown-editor-lite';
+import 'react-markdown-editor-lite/lib/index.css';
 
+const mdParser = new MarkdownIt(/* Markdown-it options */);
+
+// Finish!
+function handleEditorChange({ html, text }) {
+  console.log('handleEditorChange', html, text);
+}
 
 class TableManageUser extends Component {
   // Render --> Check hàm này đầu tiên
@@ -39,7 +48,9 @@ class TableManageUser extends Component {
 
   render() {
     let arrUsers = this.state.userRedux; 
+    console.log("check load data: ", arrUsers)
     return (
+      <React.Fragment>
       <div className="user-container">
         <div className="title ">Manage User</div>
         
@@ -80,8 +91,10 @@ class TableManageUser extends Component {
                 );
               })}
           </table>
+          <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
         </div>
       </div>
+      </React.Fragment>
     );
   }
 }

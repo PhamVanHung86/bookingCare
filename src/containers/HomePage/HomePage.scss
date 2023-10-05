@@ -37,7 +37,11 @@
                     background-image: url("../../assets/benh-vien-cho-ray.jpg");
                 }
                 &.section-out-standing-doctor {
-                    background-image: url("../../assets/bsckii-tran-minh-khuyen.jpg");
+                    //background-image: url("../../assets/bsckii-tran-minh-khuyen.jpg");
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                    border: 1px solid #49bce2;
                 }
                 &.section-handbook {
                     background-image: url("../../assets/tieu-duong-0.jpg");
@@ -45,6 +49,10 @@
             }               
         }
     }
+}
+
+.slick-disabled {
+    display: none !important
 }
 
 .section-share {  

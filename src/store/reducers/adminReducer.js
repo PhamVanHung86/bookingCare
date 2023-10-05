@@ -3,9 +3,10 @@ import actionTypes from "../actions/actionTypes";
 const initialState = {
   isLoadingGender: false,
   genders: [],
-  reles: [],
+  roles: [],
   positions: [],
   users: [],
+  topDoctors: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -13,22 +14,19 @@ const adminReducer = (state = initialState, action) => {
     case actionTypes.FETCH_GENDER_START:
       let copyState = { ...state };
       copyState.isLoadingGender = true;
-      console.log(" fire fetch gender start: ", state)
       return {
         ...copyState,
       };
     case actionTypes.FETCH_GENDER_SUCCESS:
-      
       state.genders = action.data;
       state.isLoadingGender = false;
-      console.log(" fire fetch gender success: ", action)
+      console.log(" fire fetch gender success: ", action);
       return {
         ...state,
       };
     case actionTypes.FETCH_GENDER_FAILED:
       state.genders = [];
       state.isLoadingGender = false;
-      console.log(" fire fetch gender failed: ", action)
       return {
         ...state,
       };
@@ -65,6 +63,18 @@ const adminReducer = (state = initialState, action) => {
 
     case actionTypes.FETCH_ALL_USERS_FAILED:
       state.users = [];
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_TOP_DOCTORS_SUCCESS:
+      state.topDoctors = action.data;
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_TOP_DOCTORS_FAILED:
+      state.topDoctors = [];
       return {
         ...state,
       };
