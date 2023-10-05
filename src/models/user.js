@@ -7,8 +7,30 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      // define association here
+    // static async associate(models) {
+      
+    //     User.belongsTo(models.Allcode, {
+    //       foreignKey: 'keyMap',
+    //       target: 'positionId',
+    //       as: 'positionData',
+    //     });
+    //     User.belongsTo(models.Allcode, {
+    //       foreignKey: 'gender',
+    //       target: 'keyMap',
+    //       as: 'genderData',
+    //     });
+    // }
+    static async associate(models) {
+      User.belongsTo(models.Allcode, {
+        foreignKey: 'positionId',
+        targetKey: 'keyMap',
+        as: 'positionData',
+      });
+      User.belongsTo(models.Allcode, {
+        foreignKey: 'gender',
+        targetKey: 'keyMap',
+        as: 'genderData',
+      });
     }
   }
   User.init(
