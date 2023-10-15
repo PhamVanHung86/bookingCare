@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
 import { FormattedMessage } from "react-intl";
+import { withRouter } from "react-router";
 
 class OutStandingDoctor extends Component {
   constructor(props) {
@@ -31,11 +32,19 @@ class OutStandingDoctor extends Component {
     }
   }
 
+  handleViewDetailDoctor = (doctor) => {
+    if(this.props.history)
+    {
+       this.props.history.push(`/detail-doctor/${doctor.id}`)
+      //console.log("check file outstanding: ", doctor.id)
+      }
+  }
+
   render() {
     let arrDoctors = this.state.arrDoctors;
     let { language } = this.props;
     //arrDoctors = arrDoctors.concat(arrDoctors).concat(arrDoctors);
-    console.log("check list out standing doctor: ", this.props.topDoctorsRedux);
+    //console.log("check list out standing doctor: ", this.props.topDoctorsRedux);
     return (
       <div className="section-share section-out-standing-doctor">
         <div className="section-container">
@@ -49,25 +58,6 @@ class OutStandingDoctor extends Component {
           </div>
           <div className="section-body">
             <Slider {...this.props.settings}>
-            {/* <div className="slider-customize">
-                <div className="position-bg">
-                  <div className="bg-image section-out-standing-doctor"></div>
-                  <div className="position-text">
-                    <div>Bác sĩ khoa 1</div>
-                    <div>Cơ xương khớp</div>
-                  </div>
-                </div>
-              </div> */}
-
-              
-              
-              
-              
-              
-              
-              
-              
-              
               {arrDoctors &&
                 arrDoctors.length > 0 &&
                 arrDoctors.map((item, index) => {
@@ -81,7 +71,7 @@ class OutStandingDoctor extends Component {
                   let nameVi = `${item.positionData.valueVi}, ${item.firstName} ${item.lastName}`;
                   let nameEn = `${item.positionData.valueEn}, ${item.lastName} ${item.firstName}`;
                   return (
-                      <div className="slider-customize" key={index}>
+                      <div className="slider-customize" key={index} onClick={() => this.handleViewDetailDoctor(item)}>
                         <div className="position-bg">
                           <div
                             className="bg-image section-out-standing-doctor"
@@ -120,4 +110,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor));
