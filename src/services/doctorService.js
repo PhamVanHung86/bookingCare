@@ -13,15 +13,17 @@ let getTopDoctorHome = (limit) => {
         include: [
           {
             model: db.Allcode,
-            as: "positionData",
-            attributes: ["valueEn", "valueVi"],
+            as: 'positionData',
+            attributes: ['valueEn', 'valueVi'],
           },
           {
             model: db.Allcode,
-            as: "genderData",
-            attributes: ["valueEn", "valueVi"],
+            as: 'genderData',
+            attributes: ['valueEn', 'valueVi'],
           },
         ],
+
+        
         raw: true,
         nest: true,
       });
@@ -61,20 +63,38 @@ let saveInfoDoctor = (inputData) => {
       if (
         !inputData.doctorId ||
         !inputData.contentHTML ||
-        !inputData.contentMarkdown
+        !inputData.contentMarkdown ||
+        !inputData.action
       ) {
         resolve({
           errCode: 1,
           errMessage: "missing parameter",
         });
       } else {
-        await db.Markdown.create({
-          contentMarkdown: inputData.contentMarkdown,
-          contentHTML: inputData.contentHTML,
-          description: inputData.description,
-          doctorId: inputData.doctorId,
-        });
+        if(inputData.action === 'CREATE') 
+        {
+          await db.Markdown.create({
+            contentMarkdown: inputData.contentMarkdown,
+            contentHTML: inputData.contentHTML,
+            description: inputData.description,
+            doctorId: inputData.doctorId,
+          });
+        } 
+        else if(inputData.action === 'EDIT')
+        {
+          let doctorMarkdown = await db.Markdown.findOne({
+            where: { doctorId: inputData.doctorId },
+            raw: false,
+          })
 
+          if(doctorMarkdown){
+            doctorMarkdown.contentHTML = inputData.contentHTML,
+            doctorMarkdown.contentMarkdown = inputData.contentMarkdown,
+            doctorMarkdown.description = inputData.description,
+            doctorMarkdown.updateAt = new Date(),
+            await doctorMarkdown.save();
+          }
+        }
         resolve({
           errCode: 0,
           errMessage: "Save info success",
@@ -86,8 +106,65 @@ let saveInfoDoctor = (inputData) => {
   });
 };
 
+
+let getDetailDoctorByIdService = (id) => {
+  return new Promise(async (resolve, reject) => {
+  try {
+    if (!id) {
+      resolve({
+        errCode: 1,
+        errMessage: "Missing required parameter!!"
+      });
+    } else {
+      let data = await db.User.findOne({
+        where: {
+          id: id,
+        },
+        attributes: {
+          exclude: ['password']
+        },
+        include: [
+          {
+            model: db.Markdown,
+            attributes: ['description', 'contentHTML', 'contentMarkdown']
+          }, 
+          {
+            model: db.Allcode,
+            as: 'positionData',
+            attributes: ['valueEn', 'valueVi'],
+          }, 
+        ], 
+        raw: true,
+        nest: true
+      });
+
+      if(data && data.image) {
+        data.image = new Buffer.from(data.image, "base64").toString("binary");
+        console.log("convert data image success!!!");
+      }
+
+      if(!data) {
+        data = {};
+        console.log("convert data image failse!!!");
+
+      }
+      
+      resolve({
+        errCode: 0,
+        data: data
+      });
+    } 
+  } catch(e) {
+    reject(e);
+  }
+})
+};
+
+
+
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctors: getAllDoctors,
   saveInfoDoctor: saveInfoDoctor,
+  getDetailDoctorByIdService: getDetailDoctorByIdService,
 };
