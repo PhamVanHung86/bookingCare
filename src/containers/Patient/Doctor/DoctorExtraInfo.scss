@@ -1,0 +1,57 @@
+.doctor-extra-info-container {
+    margin: 10px 15px 15px 15px;
+    .content-up {
+        font-weight: 600;
+        padding: 10px 0;
+        .text-address{
+            color: #337ab7;
+            text-transform: uppercase;
+        }
+
+        .name-clinic {
+
+        }
+        
+        .detai-address {
+
+        }
+    }
+
+    .content-down {
+
+        .short-info {
+
+            currency {
+
+            }
+        }
+
+        .detail {
+            cursor: pointer;
+            color: #337ab7;
+        }
+
+        .title-price{
+
+        }
+
+        .detail-doctor {
+            .peice{
+                .left {}
+                .right {}
+            }
+        }
+
+        .note{
+
+        } 
+
+        .hide-price {
+            cursor: pointer;
+            color: #337ab7;
+        }
+
+        
+
+    }
+}

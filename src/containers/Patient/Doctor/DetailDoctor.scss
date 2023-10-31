@@ -5,31 +5,48 @@
         margin: 0 100px;
         border: 1px solid red;
         display: flex;
-        .content-left {
+
+        .intro-content-left {
             width: 20%;
             background: center center no-repeat;
-            background-image: container;
+            background-size: contain;
             width: 120px;
             height: 120px;
             border-radius: 50%;
             margin: 10px 20px;
         }
 
-        .content-right {
+        .intro-content-right {
             width: 80%;
             display: flex;
             flex-direction: column;
             padding-left: 10px;
 
-            .content-right-up {
+            .intro-content-right-up {
                 padding-top: 15px;
                 font-size: 20px;
                 font-weight: 600;
             }
 
-            .content-right-down {
+            .intro-content-right-down {
                 padding-top: 10px;
             }
+        }
+    }
+
+    .schedule-doctor {
+        margin: 0px 100px;
+        display: flex;
+        min-height: 200px;
+        padding: 10px 0px;
+        
+
+        .schedule-content-left {
+            width: 50%;
+        }
+
+        .schedule-content-right {
+            width: 50%;
         }
     }
 

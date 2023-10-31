@@ -37,8 +37,12 @@
             "manage-specialty": "Manage specialties",
             "handbook": "Handbook",
             "manage-handbook": "Manage handbook"
+        }, 
+        "doctor": {
+            "manage-schedule": "Manage Doctor's Schedule"
         }
     },
+    
 
     "manage-user": {
         "add": "Add a new user",
@@ -58,6 +62,56 @@
     "homepage": {
         "outstanding-doctor": "Doctor featured last week",
         "more-info": "See more"
+    },
+    "manage-schedule": {
+        "title": "Manage doctor's examination plan",
+        "choose-doctor": "Choose doctor",
+        "choose-date": "Choose date",
+        "save": "Save info"
+    }, 
+    "patient": {
+        "detail-doctor": {
+            "schedule": "Schedule",
+            "no-schedule": "Doctors do not have appointments during this time, please choose another time",
+            "choose": "Choose ",
+            "book-free": " and book (free)",
+            "choose-price": "Choose price",
+            "select-method": "Select a payment method",
+            "select-province": "Select province",
+            "clinic-name": "Clinic name",
+            "clinic-address": "Clinic address",
+            "note": "Note"
+        }, 
+        "extra-info-doctor": {
+            "text-address": "Address of examination",
+            "price":"Examination price: ",
+            "detail": " See detail",
+            "payment": "The patient can play the cost in the from of: ",
+            "hide-price": "Hide price list"
+        }, 
+        "booking-modal": {
+            "title": "Booking information",
+            "fullName": "Full name",
+            "phoneNumber": "Phone number",
+            "email": "Email address",
+            "address": "Contact address",
+            "reason": "Reason for check-up",
+            "birthday": "Date of birth",
+            "gender": "Gender",
+            "btnConfirm": "Confirm",
+            "btnCancel": "Cancel",
+            "priceBooking": "Free booking",
+            "price": "Check-up fee: "
+        }
+    }, 
+    "admin": {
+        "manage-doctor": {
+            "title": "Create additional doctor information",
+            "select-doctor": "Choose doctor",
+            "intro": "Introductory information",
+            "add": "Create Information",
+            "save": "Save Information"
+        }
     }
 
 }

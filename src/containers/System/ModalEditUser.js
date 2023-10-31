@@ -51,6 +51,7 @@ class ModalEditUser extends Component {
     }
   }
 
+  
   toggle = () => {
     this.props.toggleFormParent();
   };

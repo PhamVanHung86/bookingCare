@@ -87,24 +87,7 @@ export const fetchRoleStart = () => {
   };
 };
 
-export const createNewUser = (data) => {
-  return async (dispatch, getState) => {
-    try {
-      let res = await createNewUserService(data);
-      console.log(" check create user redux: ", res);
-      if (res && res.errCode === 0) {
-        dispatch(saveUserSuccess());
-        dispatch(fetchAllUsersStart());
-        toast.success("Create new user success!");
-      } else {
-        dispatch(saveUserFailed());
-      }
-    } catch (e) {
-      dispatch(saveUserFailed());
-      console.log("save user failed", e);
-    }
-  };
-};
+
 
 export const saveUserSuccess = () => ({
   type: actionTypes.CREATE_USER_SUCCESS,
@@ -140,6 +123,7 @@ export const fetchAllUsersSuccess = (data) => ({
   type: actionTypes.FETCH_ALL_USERS_SUCCESS,
   users: data,
 });
+
 
 export const deleteUser = (userId) => {
   return async (dispatch, getState) => {
@@ -177,6 +161,25 @@ export const editUser = (data) => {
       dispatch(editUserFailed());
       console.log("Save User Failed error", e);
       toast.error("Update the user error! ");
+    }
+  };
+};
+
+export const createNewUser = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await createNewUserService(data);
+      console.log(" check create user redux: ", res);
+      if (res && res.errCode === 0) {
+        dispatch(saveUserSuccess());
+        dispatch(fetchAllUsersStart());
+        toast.success("Create new user success!");
+      } else {
+        dispatch(saveUserFailed());
+      }
+    } catch (e) {
+      dispatch(saveUserFailed());
+      console.log("save user failed", e);
     }
   };
 };
@@ -268,3 +271,77 @@ export const fetchSaveDetailDoctor = (data) => {
     }
   };
 };
+
+
+export const fetchAllScheduleTime = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllCodeService("TIME");
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS,
+          data: res.data,
+        });
+        console.log("check data schedule time success", res);
+        //toast.success("Save Info Detail Doctor Sucess! ");
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
+        });
+        // toast.error("Save Info Detail Doctor Failed! ");
+         console.log("check data schedule time failed", res);
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
+      });
+      // toast.error("Save Info Detail Doctor Failed Catch! ");
+       console.log("check data schedule time failed : ", e);
+    }
+  };
+};
+
+export const fetchRequiredGetAllDoctorInfo = () => {
+  return async (dispatch, getState) => {
+    try {
+      // dispatch({
+      //   type: actionTypes.FETCH_REQUIRED_DOCTOR_INFO_START
+      // })
+
+      let resPrice = await getAllCodeService("PRICE");
+      let resPayment = await getAllCodeService("PAYMENT");
+      let resProvince = await getAllCodeService("PROVINCE");
+
+      if (resPrice && resPrice.errCode === 0 
+          && resPayment && resPayment.errCode === 0 
+          && resProvince && resProvince.errCode === 0) {
+            let data = {
+              resPrice: resPrice.data,
+              resPayment: resPayment.data,
+              resProvince: resProvince.data,
+            }
+        
+        dispatch(fetchRequiredDoctorInfoSuccess(data))
+        //console.log("check data FETCH_REQUIRED_DOCTOR_INFO_SUCCESS data =", data);
+        //toast.success("Save Info Detail Doctor Sucess! ");
+      } else {
+        dispatch(fetchRequiredDoctorInfoFailed());
+        // toast.error("Save Info Detail Doctor Failed! ");
+        console.log("check data FETCH_REQUIRED_DOCTOR_INFO_FAILED");
+      }
+    } catch (e) {
+      dispatch(fetchRequiredDoctorInfoFailed())
+      // toast.error("Save Info Detail Doctor Failed Catch! ");
+       console.log("check data FETCH_REQUIRED_DOCTOR_INFO_FAILED: ", e);
+    }
+  };
+};
+
+export const fetchRequiredDoctorInfoSuccess = (allRequiredData) => ({
+  type: actionTypes.FETCH_REQUIRED_DOCTOR_INFO_SUCCESS,
+  data: allRequiredData
+});
+
+export const fetchRequiredDoctorInfoFailed = () => ({
+  type: actionTypes.FETCH_REQUIRED_DOCTOR_INFO_FAILED,
+});

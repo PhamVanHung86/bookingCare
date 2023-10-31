@@ -8,6 +8,8 @@ const initialState = {
   users: [],
   topDoctors: [],
   allDoctors: [],
+  allScheduleTime: [],
+  allRequiredDoctorInfo: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -82,7 +84,7 @@ const adminReducer = (state = initialState, action) => {
 
     case actionTypes.FETCH_ALL_DOCTORS_SUCCESS:
       state.allDoctors = action.data;
-      console.log(" fire fetch all doctor success: ", action);
+      //console.log(" fire fetch all doctor success: ", action);
       return {
         ...state,
       };
@@ -92,6 +94,36 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+
+    case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS:
+      state.allScheduleTime = action.data;
+      //console.log(" fire fetch allcode schedule time success: ", action);
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED:
+      state.allScheduleTime = [];
+      //console.log(" fire fetch allcode schedule time success: ", action);
+
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_REQUIRED_DOCTOR_INFO_SUCCESS:
+      state.allRequiredDoctorInfo = action.data;
+      //console.log(" fire FETCH_REQUIRED_DOCTOR_INFO_SUCCESS: ", action);
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_REQUIRED_DOCTOR_INFO_FAILED:
+      state.allRequiredDoctorInfo = [];
+      //console.log(" fire FETCH_REQUIRED_DOCTOR_INFO_FAILED: ", action);
+      return {
+        ...state,
+      };
+
     default:
       return state;
   }
