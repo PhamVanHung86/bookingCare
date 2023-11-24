@@ -18,6 +18,7 @@ class DoctorSchedule extends Component {
       isOpenModalBooking: false,
       dataScheduleTimeModal: {},     
       timeType: [], 
+      date:[]
     };
   }
 
@@ -34,6 +35,7 @@ class DoctorSchedule extends Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  
 
   getArrDays = (language) => {
     let allDays = [];
@@ -84,21 +86,25 @@ class DoctorSchedule extends Component {
         allDays[0].value
       );
 
-      
       this.setState({
         allAvailableTime: res.data ? res.data : [],
-        
+        date: allDays[0].value
       });
+    }
+  };
 
+  handleOnChangSelect = async (event) => {
+    if(this.props.doctorIdFromParent && this.props.doctorIdFromParent !== -1) {
+      let doctorId = this.props.doctorIdFromParent;
+      let date = event.target.value;
+      let res = await getScheduleDoctorService(doctorId, date);
 
-    //   let date = event.target.value;
-    //   let res = await getScheduleDoctorService(doctorId, date);
-
-    //   if (res && res.errCode === 0) {
-    //     this.setState({
-    //       allAvailableTime: res.data ? res.data : [],
-    //     });
-    //   }
+      if (res && res.errCode === 0) {
+        this.setState({
+          allAvailableTime: res.data ? res.data : [],
+          date: date
+        });
+      }
       
     }
   };
@@ -107,7 +113,8 @@ class DoctorSchedule extends Component {
     this.setState({
       isOpenModalBooking: true,
       dataScheduleTimeModal: time,
-      timeType: timeType
+      timeType: timeType,
+      
     })
   }
 
@@ -118,12 +125,12 @@ class DoctorSchedule extends Component {
   }
 
   render() {
-    let { allDays, allAvailableTime, isOpenModalBooking, dataScheduleTimeModal, timeType } = this.state;
+    let { allDays, allAvailableTime, isOpenModalBooking, dataScheduleTimeModal, timeType, date } = this.state;
     let { language } = this.props;
 
 
-    // console.log("check state : ", this.state)
-    // console.log("check props: ", this.props)
+    console.log("check state dataScheduleTimeModal : ", this.state.date )
+    console.log("check props: ", this.props)
 
     return (
       <>
@@ -199,6 +206,7 @@ class DoctorSchedule extends Component {
           doctorIdFromParent = {this.props.doctorIdFromParent}
           detailDoctor={this.props.detailDoctor}
           timeType={timeType}
+          date={date}
         />
       </>
     );

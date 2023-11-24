@@ -22,6 +22,10 @@ export const adminMenu = [
       {
         name: "menu.doctor.manage-schedule", 
         link:"/doctor/manage-schedule"
+      }, 
+      {
+        name: "menu.doctor.manage-patient", 
+        link:"/doctor/manage-patient"
       }
     ]
   },
@@ -44,6 +48,16 @@ export const adminMenu = [
     ]
   },
 
+  // quan li phong kham
+  {
+    name: "menu.admin.clinic",
+    menus: [
+      {
+        name: "menu.admin.manage-clinic", link: "/system/manage-clinic"
+      },
+    ]
+  },
+
   // quan ly cam nan 
   {
     name: "menu.admin.handbook",
@@ -62,6 +76,9 @@ export const doctorMenu = [
     menus: [
       {
         name: "menu.doctor.manage-schedule", link: "/doctor/manage-schedule"
+      },
+      {
+        name: "menu.doctor.manage-patient", link: "/doctor/manage-patient"
       },
     ]
   },

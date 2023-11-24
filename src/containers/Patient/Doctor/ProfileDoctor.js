@@ -9,6 +9,7 @@ import {
 import "./ProfileDoctor.scss";
 import { FormattedMessage } from "react-intl";
 import NumericFormat from "react-number-format";
+import { Link } from "react-router-dom";
 
 class ProfileDoctor extends Component {
   constructor(props) {
@@ -55,9 +56,11 @@ class ProfileDoctor extends Component {
   }
 
   render() {
-    let { language, dataTime } = this.props;
+    let { language, dataTime, isShowLinkDetail, isShowPrice, doctorId } =
+      this.props;
     let { dataProfile, extraInfo } = this.state;
 
+    
     let dayVi = "",
       dayEn = "";
 
@@ -90,6 +93,16 @@ class ProfileDoctor extends Component {
 
           <div className="intro-content-right">
             <div className="intro-content-right-up">
+                {language === LANGUAGES.VI ? nameVi : nameEn}
+              </div>
+              <div className="intro-content-right-down">
+                {dataProfile &&
+                  dataProfile.Markdown &&
+                  dataProfile.Markdown.description && (
+                    <span>{dataProfile.Markdown.description}</span>
+                  )}
+              </div>
+            {/* <div className="intro-content-right-up">
               {language === LANGUAGES.VI ? nameVi : nameEn}
             </div>
             <div className="intro-content-right-down">
@@ -99,36 +112,45 @@ class ProfileDoctor extends Component {
                 {language === LANGUAGES.VI ? dayVi : dayEn}
               </div>
               <FormattedMessage id="patient.booking-modal.priceBooking" />
-            </div>
+            </div> */}
           </div>
         </div>
-        <div className="examination-price">
-          <FormattedMessage id="patient.extra-info-doctor.price" />
-          {extraInfo &&
-            extraInfo.priceTypeData &&
-            language === LANGUAGES.VI && (
-              <NumericFormat
-                className="currency"
-                value={extraInfo.priceTypeData.valueVi}
-                displayType={"text"}
-                thousandSeparator={true}
-                suffix={"VND"}
-                renderText={(value) => <b>{value}</b>}
-              />
-            )}
 
-          {extraInfo &&
-            extraInfo.priceTypeData &&
-            language === LANGUAGES.EN && (
-              <NumericFormat
-                className="currency"
-                value={extraInfo.priceTypeData.valueEn}
-                displayType={"text"}
-                thousandSeparator={true}
-                suffix={"$"}
-              />
-            )}
-        </div>
+        {isShowLinkDetail === true && (
+          <div className="view-detail-doctor">
+            <Link to={`/detail-doctor/${doctorId}`}>Xem thêm </Link>
+          </div>
+        )}
+
+        {isShowPrice === true && (
+          <div className="examination-price">
+            <FormattedMessage id="patient.extra-info-doctor.price" />
+            {extraInfo &&
+              extraInfo.priceTypeData &&
+              language === LANGUAGES.VI && (
+                <NumericFormat
+                  className="currency"
+                  value={extraInfo.priceTypeData.valueVi}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  suffix={"VND"}
+                  renderText={(value) => <b>{value}</b>}
+                />
+              )}
+
+            {extraInfo &&
+              extraInfo.priceTypeData &&
+              language === LANGUAGES.EN && (
+                <NumericFormat
+                  className="currency"
+                  value={extraInfo.priceTypeData.valueEn}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  suffix={"$"}
+                />
+              )}
+          </div>
+        )}
       </div>
     );
   }

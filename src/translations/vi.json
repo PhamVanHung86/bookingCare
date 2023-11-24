@@ -38,7 +38,8 @@
             "manage-handbook": "Quản lý cẩm nang"
         }, 
         "doctor": {
-            "manage-schedule": "Quản lý kế hoạch khám bệnh"
+            "manage-schedule": "Quản lý kế hoạch khám bệnh",
+            "manage-patient": "Quản lý kế hoạch khám bệnh của bệnh nhân"
         }
     },
     
@@ -61,12 +62,34 @@
     }, 
     "homepage": {
         "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
-        "more-info": "Xem thêm"
+        "more-info": "Xem thêm",
+        "specialty-popular": "Chuyên khoa phổ biến",
+        "outstanding-clinic":"Cơ sở y tế nổi bật",
+        "search": "Tìm kiếm"
     },
     "manage-schedule": {
         "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
         "choose-doctor": "Chọn bác sĩ",
         "choose-date": "Chọn ngày",
+        "save": "Lưu thông tin"
+    },
+    "manage-patient": {
+        "title": "Quản lý bệnh nhân khám bệnh",
+        "choose-doctor": "Chọn bác sĩ",
+        "choose-date": "Chọn ngày khám",
+        "save": "Lưu thông tin"
+    },
+    "manage-specialty": {
+        "title": "Quản lý chuyên khoa",
+        "choose-specialty": "Tên chuyên khoa",
+        "choose-img": "Ảnh chuyên khoa",
+        "save": "Lưu thông tin"
+    },
+    "manage-clinic": {
+        "title": "Quản lý phòng khám",
+        "choose-clinic": "Tên phòng khám",
+        "address":"Địa chỉ liên lạc",
+        "choose-img": "Ảnh phòng khám",
         "save": "Lưu thông tin"
     },
     "patient": {
@@ -80,7 +103,7 @@
             "select-province": "Chọn tỉnh thành",
             "clinic-name": "Tên phòng khám",
             "clinic-address": "Địa chỉ phòng khám",
-            "note": "Chú thích"
+            "note": "Ghi chú"
         }, 
         "extra-info-doctor": {
             "text-address": "Địa chỉ khám",
@@ -106,11 +129,13 @@
     },
     "admin": {
         "manage-doctor": {
-            "title": "Tạo thêm thông tin doctor",
+            "title": "Tạo thêm thông tin bác sĩ",
             "select-doctor": "Chọn bác sĩ",
             "intro": "Thông tin giới thiệu",
             "add": "Tạo thông tin",
-            "save": "Lưu thông tin"
+            "save": "Lưu thông tin", 
+            "specialty": "Chọn chuyên khoa",
+            "select-clinic": "Chọn phòng khám"
         }
     }
 }

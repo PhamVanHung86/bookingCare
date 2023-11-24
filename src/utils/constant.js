@@ -4,7 +4,18 @@ export const path = {
     LOGIN: '/login',
     LOG_OUT: '/logout',
     SYSTEM: '/system', 
-    DETAIL_DOCTOR: '/detail-doctor/:id'    
+
+    ALL_DOCTORS: '/all-doctors',
+    DETAIL_DOCTOR: '/detail-doctor/:id',
+    
+    ALL_SPECIALTIES: '/all-specialties',
+    DETAIL_SPECIALTY: '/detail-specialty/:id',
+
+    ALL_CLINICS: '/all-clinics',
+    DETAIL_CLINIC: '/detail-clinic/:id',
+
+    VERIFY_EMAIL_BOOKING: '/verify-booking',
+
 };
 
 export const LANGUAGES = {

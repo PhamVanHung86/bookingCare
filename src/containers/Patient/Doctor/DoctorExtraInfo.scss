@@ -1,5 +1,8 @@
 .doctor-extra-info-container {
-    margin: 10px 15px 15px 15px;
+    margin: 0px 15px 15px 15px;
+    //padding-left: 20px ;
+    
+    height: 100%;
     .content-up {
         font-weight: 600;
         padding: 10px 0;
@@ -18,7 +21,7 @@
     }
 
     .content-down {
-
+        
         .short-info {
 
             currency {
@@ -34,17 +37,10 @@
         .title-price{
 
         }
-
+        
         .detail-doctor {
-            .peice{
-                .left {}
-                .right {}
-            }
+            
         }
-
-        .note{
-
-        } 
 
         .hide-price {
             cursor: pointer;

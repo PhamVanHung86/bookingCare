@@ -1,0 +1,23 @@
+.section-medical-facility {
+    .section-body {
+        .clinic-child {
+            cursor: pointer;
+            
+        
+            .bg-image{
+                border-radius: 10% !important;
+                background-color: white !important;
+                background-size: contain !important;
+            }
+            
+            .clinic-name {
+                padding: 10px 20px !important;
+                font-size: 17px !important;
+                &:hover {
+                    color:#49bce2;
+                }
+            }
+        }
+    }
+    
+}

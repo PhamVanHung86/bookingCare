@@ -1,0 +1,90 @@
+div._loading_overlay_wrapper {
+    position: unset;
+
+    ._loading_overlay_overlay {
+        z-index: 10000;
+    }
+}
+
+.manage-patient-container {
+    
+    .manage-patient-title {
+        text-transform: uppercase;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-weight: 600;
+        font-size: 17px;
+        text-align: center;
+    }
+
+    .pick-hour-container {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+
+        button {
+            padding: 0px 15px;
+            border: 1px solid grey;
+            
+        }
+    }
+
+    .btn-patient{
+        &.active {
+            background-color: rgba(0, 195, 255, 0.705);
+        }
+    }
+
+    .btn-save-patient {
+        margin-top: 20px;
+        padding: 0px 20px;
+    }
+}
+#action {
+    width: 250px;
+}
+    
+.action-confirm {
+    display: flex;
+    
+    border: none;
+    
+
+    .btn-confirm{
+        background: transparent;
+        margin: 5px;
+        height: 40px;
+        width: 120px;
+        color: white;
+        background-color: green;
+        font-size: 15px;
+        border: 1px solid white;
+        &:hover {
+            background-color: white !important;
+            color: green !important;
+           
+
+        }
+    }
+    
+    .btn-remedy{
+        background: transparent;
+        margin: 5px;
+        border: 1px solid white;
+        height: 40px;
+        
+        width: 120px;
+        color: white;
+        background-color: red;
+        font-size: 16px;
+        
+    
+    
+        &:hover {
+            background-color: white !important;
+            color: red !important;
+        }
+    }
+}

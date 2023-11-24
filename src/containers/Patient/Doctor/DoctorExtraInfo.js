@@ -16,11 +16,19 @@ class DoctorExtraInfo extends Component {
     };
   }
 
-  componentDidMount() {}
+  async componentDidMount() {
+    if (this.props.doctorIdFromParent) {
+      let res = await getExtraInfoDoctorService(this.props.doctorIdFromParent);
+      if (res && res.errCode === 0) {
+        this.setState({
+          extraInfo: res.data,
+        });
+      }
+    }
+  }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.language !== prevProps.language) {
-    }
+    if(this.props.language !== prevProps.language) {}
     if (this.props.doctorIdFromParent !== prevProps.doctorIdFromParent) {
       let res = await getExtraInfoDoctorService(this.props.doctorIdFromParent);
       if (res && res.errCode === 0) {
@@ -36,6 +44,8 @@ class DoctorExtraInfo extends Component {
       isShowDetailInfo: status,
     });
   };
+
+
 
   render() {
     let { isShowDetailInfo, extraInfo } = this.state;

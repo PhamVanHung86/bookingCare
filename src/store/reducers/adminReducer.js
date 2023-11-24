@@ -119,7 +119,7 @@ const adminReducer = (state = initialState, action) => {
 
     case actionTypes.FETCH_REQUIRED_DOCTOR_INFO_FAILED:
       state.allRequiredDoctorInfo = [];
-      //console.log(" fire FETCH_REQUIRED_DOCTOR_INFO_FAILED: ", action);
+      //  console.log(" fire FETCH_REQUIRED_DOCTOR_INFO_FAILED: ", action);
       return {
         ...state,
       };

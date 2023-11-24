@@ -10,25 +10,28 @@ import HomeFooter from "./HomeFooter";
 import "./HomePage.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import HomeBanner from "./HomeBanner";
 
 class HomePage extends Component {
   render() {
     let settings = {
       dots: false,
-      infinity: false,
-      speed: 500,
+      infinit: false,
+      speed: 1500,
       slidesToShow: 4,
-      slidesToScroll: 1,
+      slidesToScroll: 4,
     };
     return (
       <div>
-        <HomeHeader isShowBanner={true}/>
+        <HomeHeader />
+        <HomeBanner/>
         <Specialty settings={settings} />
         <MedicalFacility settings={settings} />
         <OutStandingDoctor settings={settings} />
         <HandBook />
         <About />
         <HomeFooter />
+        
       </div>
     );
   }

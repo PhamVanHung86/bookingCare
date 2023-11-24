@@ -2,19 +2,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./ManageSchedule.scss";
-import { LANGUAGES, dateFrmat } from "../../../utils";
+import { LANGUAGES } from "../../../utils";
 import { FormattedMessage } from "react-intl";
 import Select from "react-select";
 import DatePicker from "../../../components/Input/DatePicker";
 import * as actions from "../../../store/actions";
 import { toast } from "react-toastify";
 import _ from "lodash";
-import moment from "moment";
+
 import { saveBulkScheduleDoctor } from "../../../services/userService";
 
 class ManageSchedule extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       selectedDoctor: {},
       listDoctors: [],

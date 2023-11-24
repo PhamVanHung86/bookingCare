@@ -1,0 +1,62 @@
+.detail-clinic-container {
+    
+    .detail-clinic-content {
+        
+        padding-top: 20px;
+        .search-clinic-doctor {
+            height: 30px;
+            width: 150px;
+            border: 2px solid grey;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        .info-schedule-clinic {
+            padding: 20px 50px 50px 45px;
+            background-color: gainsboro;
+            .detail-clinic-info{
+                display: flex;
+                width: 98%;
+                min-height: 300px;
+                margin: 15px 15px 0px 15px ;
+                padding: 10px;
+        
+        
+                background-color: #fff;
+                box-shadow: 0 1px 6px gray;
+                border-radius: 8px;
+                
+                .content-left {
+                    width: 50%;
+                    border-right: 1px solid gray;
+                }
+        
+                .content-right {
+                    width: 50%;
+        
+                    .schedule-doctor {
+                        padding: 20px 0px 0px 15px;
+                    }
+        
+                    .schedule-extra-info {
+                        border-top: 1px solid gray;
+                        margin-top: 10px;
+                        padding-top: 10px;
+        
+                        
+                    }
+                }
+            }
+        }
+
+
+        
+    }
+
+    
+
+   
+    
+    
+}

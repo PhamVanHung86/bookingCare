@@ -19,7 +19,6 @@ class OutStandingDoctor extends Component {
   // gọi một hàm redux action để lấy dữ liệu từ redux store
   componentDidMount() {
     this.props.loadTopDoctors();
-    
   }
 
   // theo dõi và cập nhật trạng thái của componet dựa trên
@@ -33,12 +32,16 @@ class OutStandingDoctor extends Component {
   }
 
   handleViewDetailDoctor = (doctor) => {
-    if(this.props.history)
-    {
-       this.props.history.push(`/detail-doctor/${doctor.id}`)
-      //console.log("check file outstanding: ", doctor.id)
-      }
-  }
+    if (this.props.history) {
+      this.props.history.push(`/detail-doctor/${doctor.id}`);
+    }
+  };
+
+  handleViewAllDoctors = (doctor) => {
+    if (this.props.history) {
+      this.props.history.push({ pathname: "/all-doctors" });
+    }
+  };
 
   render() {
     let arrDoctors = this.state.arrDoctors;
@@ -50,10 +53,13 @@ class OutStandingDoctor extends Component {
         <div className="section-container">
           <div className="section-header">
             <div className="title-section">
-              <FormattedMessage id="homepage.outstanding-doctor"/>
+              <FormattedMessage id="homepage.outstanding-doctor" />
             </div>
-            <button className="btn-section">
-              <FormattedMessage id="homepage.mor-info"/>
+            <button
+              className="btn-section"
+              onClick={() => this.handleViewAllDoctors(arrDoctors)}
+            >
+              <FormattedMessage id="homepage.more-info" />
             </button>
           </div>
           <div className="section-body">
@@ -71,21 +77,24 @@ class OutStandingDoctor extends Component {
                   let nameVi = `${item.positionData.valueVi}, ${item.firstName} ${item.lastName}`;
                   let nameEn = `${item.positionData.valueEn}, ${item.lastName} ${item.firstName}`;
                   return (
-                      <div className="slider-customize" key={index} onClick={() => this.handleViewDetailDoctor(item)}>
-                        <div className="position-bg">
-                          <div
-                            className="bg-image section-out-standing-doctor"
-                            style={{ backgroundImage: `url(${imageBase64})` }}
-                          ></div>
-                          <div className="position text-center">
-                            <div>
-                              {language === LANGUAGES.VI ? nameVi : nameEn}
-                            </div>
-                            <div>Cơ xương khớp</div>
+                    <div
+                      className="slider-customize"
+                      key={index}
+                      onClick={() => this.handleViewDetailDoctor(item)}
+                    >
+                      <div className="position-bg">
+                        <div
+                          className="bg-image section-out-standing-doctor"
+                          style={{ backgroundImage: `url(${imageBase64})` }}
+                        ></div>
+                        <div className="position text-center">
+                          <div>
+                            {language === LANGUAGES.VI ? nameVi : nameEn}
                           </div>
+                          <div>Cơ xương khớp</div>
                         </div>
                       </div>
-    
+                    </div>
                   );
                 })}
             </Slider>
@@ -110,4 +119,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor)
+);

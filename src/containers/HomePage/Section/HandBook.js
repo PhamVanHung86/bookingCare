@@ -8,10 +8,10 @@ class HandBook extends Component {
   render() {
     let settings = {
       dots: false,
-      infinity: true,
-      speed: 500,
+      infinite: false,
+      speed: 1500,
       slidesToShow: 2,
-      slidesToScroll: 1,
+      slidesToScroll: 2,
     };
     return (
       <div className="section-share section-handbook">

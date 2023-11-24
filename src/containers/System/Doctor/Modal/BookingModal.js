@@ -5,7 +5,8 @@ import "./BookingModal.scss";
 import { LANGUAGES } from "../../../../utils";
 import { FormattedMessage } from "react-intl";
 import { Button, Modal } from "reactstrap";
-
+import moment from "moment";
+import _ from "lodash";
 import DatePicker from "../../../../components/Input/DatePicker";
 import * as actions from "../../../../store/actions";
 import Select from "react-select";
@@ -83,18 +84,52 @@ class BookingModal extends Component {
     });
   };
 
+  capitalizeFirstLatter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  buildTimeBooking = (dataTime) => {
+    let { language } = this.props;
+    if (dataTime && !_.isEmpty(dataTime)) {
+      let day = "";
+      language === LANGUAGES.VI
+        ? (day = this.capitalizeFirstLatter(
+            moment(new Date()).locale("vi").format("dddd - DD/MM")
+          ))
+        : (day = moment(new Date()).locale("en").format("dddd - DD/MM"));
+      return `${dataTime} - ${day}`
+    }
+  };
+
+  buildDoctorName = (detailDoctor) => {
+    let { language } = this.props
+    let name = "";
+    if (detailDoctor && detailDoctor.positionData) {
+      language === LANGUAGES.VI ? 
+      name = `${detailDoctor.positionData.valueVi}, ${detailDoctor.firstName} ${detailDoctor.lastName}`:
+      name = `${detailDoctor.positionData.valueEn}, ${detailDoctor.lastName} ${detailDoctor.firstName}`;
+    }
+    return name;
+  }
+
   handleConfirmBooking = async () => {
-    let date = new Date(this.state.birthday).getTime();
+    let birthday = new Date(this.state.birthday).getTime();
+    let timeString = this.buildTimeBooking(this.props.dataTime);
+    let doctorName = this.buildDoctorName(this.props.detailDoctor);
     let res = await postPatientBookAppointment({
       fullName: this.state.fullName,
       phoneNumber: this.state.phoneNumber,
       email: this.state.email,
       address: this.state.address,
       reason: this.state.reason,
-      date: date,
+      date: this.props.date,
+      birthday: birthday,
       doctorId: this.props.doctorIdFromParent,
       selectedGender: this.state.selectedGender.value,
       timeType: this.props.timeType,
+      language: this.props.language,
+      timeString: timeString,
+      doctorName: doctorName,
     });
 
     if (res && res.errCode === 0) {
@@ -112,7 +147,7 @@ class BookingModal extends Component {
       reason: "",
       birthday: "",
       genders: "",
-    })
+    });
   };
 
   checkValidateInput = () => {
@@ -131,7 +166,10 @@ class BookingModal extends Component {
   render() {
     let { isOpenModal, closeModalBooking } = this.props;
 
-    //console.log("check doctorId: ", this.props.timeType)
+    console.log("check state: ", this.state);
+    console.log("check this.props", this.props.date);
+    console.log("check dataTime: ", this.state.birthday);
+
 
     return (
       <Modal
@@ -155,6 +193,8 @@ class BookingModal extends Component {
             <ProfileDoctor
               doctorId={this.props.doctorIdFromParent}
               dataTime={this.props.dataTime}
+              isShowLinkDetail={false}
+              isShowPrice={true}
               dataBooking={this.props}
             />
 

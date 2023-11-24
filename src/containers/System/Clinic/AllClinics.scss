@@ -1,0 +1,48 @@
+.all-clinics-container {
+    .clinics-content {
+        
+        .header-clinic {
+            font-weight: 600;
+            font-size: 20px;
+            color: #49bce2;
+            padding: 10px 0px;
+            border-bottom: 1px solid gray;
+            i::before{
+                cursor: pointer;
+                padding: 5px;
+            }
+        }
+
+        .list-customize {
+            padding: 10px 0px;
+            display: flex;
+            border-bottom: 1px solid gray;
+            align-items: center;
+            
+            .bg-image {
+                background-size: contain;
+                background-repeat: no-repeat;
+                height: 130px !important;
+                padding: 5px 0px;
+                width: 150px !important;
+                background-position: center;
+                cursor: pointer;
+            }
+            .clinic-name {
+                padding-left: 20px;
+                font-size: 17px;
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+}

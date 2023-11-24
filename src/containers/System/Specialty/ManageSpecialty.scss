@@ -1,0 +1,27 @@
+.manage-specialty-container {
+    
+    .manage-specialty-title {
+        text-transform: uppercase;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-weight: 600;
+        font-size: 17px;
+        text-align: center;
+    }
+
+    .chooseImg{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .btn-schedule{
+        &.active {
+            background-color: rgba(0, 195, 255, 0.705);
+        }
+    }
+
+    .btn-save-schedule {
+        margin-top: 20px;
+        padding: 0px 20px;
+    }
+}

@@ -1,0 +1,16 @@
+.specialty-child {
+    cursor: pointer;
+
+    .bg-image{
+        border-radius: 10% !important;
+        
+    }
+    
+    .specialty-name {
+        padding: 10px 20px !important;
+        font-size: 17px !important;
+        &:hover {
+            color:#49bce2;
+        }
+    }
+}
